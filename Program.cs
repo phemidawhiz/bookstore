@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//DefaultTypeMap.MatchNamesWithUnderscores = true;
+DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 builder.Services.AddScoped<IDbService, DbService>();
 builder.Services.AddScoped<IBookService, BookService>();

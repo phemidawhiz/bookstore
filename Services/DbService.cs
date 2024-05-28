@@ -15,6 +15,15 @@ namespace BookStore.Services
         public DbService(IConfiguration configuration)
         {
             _db = new NpgsqlConnection(configuration.GetConnectionString("BookStoredb"));
+            /*using var cmd = new NpgsqlCommand();
+            cmd.Connection = (NpgsqlConnection?)_db;
+            cmd.CommandText = "CREATE TABLE public.book (id SERIAL PRIMARY KEY," +
+            "title VARCHAR(255)," +
+            "genre VARCHAR(100)," +
+            "isbn VARCHAR(15)," +
+            "author VARCHAR(100)," +
+            "year VARCHAR(4))";
+            cmd.ExecuteNonQueryAsync();*/
         }
 
         public async Task<T> GetAsync<T>(string command, object parms)

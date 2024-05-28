@@ -9,6 +9,7 @@ namespace BookStore.Services
         Task<bool> CreateBook(Book book);
         Task<List<Book>> GetBookList();
         Task<Book> UpdateBook(Book book);
+        Task<Book> GetBook(int id);
         Task<bool> DeleteBook(int key);
     }
 }

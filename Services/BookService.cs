@@ -17,9 +17,18 @@ namespace BookStore.Services
         {
             var result =
                 await _dbService.EditData(
-                    "INSERT INTO public.book (id,name, age, address, mobile_number) VALUES (@Id, @Name, @Age, @Address, @MobileNumber)",
+                    "INSERT INTO public.book (title, isbn, author, year, genre) VALUES (@Title, @Isbn, @Author, @Year, @Genre)",
                     book);
             return true;
+        }
+
+        public async Task<Book> UpdateBook(Book book)
+        {
+            var updateBook =
+                await _dbService.EditData(
+                    "Update public.book SET title=@Title, year=@Year, isbn=@Isbn, author=@Author, author=@Author WHERE id=@Id",
+                    book);
+            return book;
         }
 
         public async Task<List<Book>> GetBookList()
@@ -33,15 +42,6 @@ namespace BookStore.Services
         {
             var bookList = await _dbService.GetAsync<Book>("SELECT * FROM public.book where id=@id", new { id });
             return bookList;
-        }
-
-        public async Task<Book> UpdateBook(Book book)
-        {
-            var updateBook =
-                await _dbService.EditData(
-                    "Update public.book SET name=@Name, age=@Age, address=@Address, mobile_number=@MobileNumber WHERE id=@Id",
-                    book);
-            return book;
         }
 
         public async Task<bool> DeleteBook(int id)
